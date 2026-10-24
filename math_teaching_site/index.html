@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#14232d">
+  <meta name="description" content="思考不止，求证不息。高中数学思维与课程学习。">
+  <title>思考不止，求证不息｜高中数学</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="config.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="返回首页">
+      <span class="brand-mark" aria-hidden="true"><span></span><i></i></span>
+      <span class="brand-name" id="brandName">数学讲解师</span>
+    </a>
+    <nav class="desktop-nav" id="desktopNav" aria-label="主导航"></nav>
+    <a class="header-cta" href="#courses">开始学习 <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-content">
+        <p class="eyebrow" id="heroEyebrow">HIGH SCHOOL MATHEMATICS</p>
+        <h1 id="heroSlogan">思考不止，<br>求证不息。</h1>
+        <p class="hero-description" id="heroDescription">从理解原理开始，建立自己的数学思维。</p>
+        <a class="primary-link" href="#courses"><span class="play-symbol">↓</span> 探索课程体系</a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="axis axis-x"></div>
+        <div class="axis axis-y"></div>
+        <div class="math-symbol symbol-pi">π</div>
+        <div class="math-symbol symbol-sigma">∑</div>
+        <div class="math-symbol symbol-integral">∫</div>
+        <div class="geometry-triangle"></div>
+        <div class="geometry-circle"></div>
+        <div class="art-caption">QUESTION · REASON · PROVE</div>
+      </div>
+      <div class="hero-bottom"><span>01 / THINKING</span><span>理解 · 推理 · 求证</span></div>
+    </section>
+
+    <section class="section courses-section" id="courses">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">LEARNING PATH</p>
+          <h2>课程体系<span class="heading-dot">.</span></h2>
+        </div>
+        <p class="section-note">循序渐进，建立属于自己的思维方法。</p>
+      </div>
+      <div class="course-grid" id="courseGrid"></div>
+    </section>
+
+    <section class="culture-band" id="culture">
+      <div class="culture-mark" aria-hidden="true">
+        <span class="culture-circle"></span><span class="culture-line"></span><span class="culture-triangle"></span>
+        <span class="culture-pi">π</span>
+      </div>
+      <div class="culture-copy">
+        <p class="section-kicker">A HISTORY OF IDEAS</p>
+        <h2 id="cultureTitle">数学，不止于公式</h2>
+        <p id="cultureDescription">从东方算学到古希腊几何，从经典问题到现代思想。数学既是求真的方法，也是一种观察世界的方式。</p>
+      </div>
+      <div class="culture-side-note">古今 · 中外 · 求真</div>
+    </section>
+
+    <section class="section about-section" id="about">
+      <p class="section-kicker">OUR PRINCIPLE</p>
+      <h2 class="about-slogan" id="aboutSlogan">思考不止，<br><em>求证不息。</em></h2>
+      <p class="about-description" id="aboutDescription">不只记住解法，更要理解问题为什么成立。让每一次思考，都有迹可循。</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand footer-brand" href="./">
+      <span class="brand-mark" aria-hidden="true"><span></span><i></i></span>
+      <span class="brand-name" id="footerBrandName">数学讲解师</span>
+    </a>
+    <p id="footerNote">以理解为起点，以求证为习惯。</p>
+    <a class="back-top" href="#top">回到顶部 ↑</a>
+  </footer>
+
+  <script>
+    (function () {
+      const cfg = window.SITE_CONFIG || {};
+      const $ = (id) => document.getElementById(id);
+      $("brandName").textContent = cfg.brandName || "数学讲解师";
+      $("footerBrandName").textContent = cfg.brandName || "数学讲解师";
+      document.title = (cfg.slogan || "思考不止，求证不息。") + "｜高中数学";
+      $("heroEyebrow").textContent = cfg.heroEyebrow || "";
+      $("heroSlogan").innerHTML = (cfg.slogan || "思考不止，求证不息。").replace("，", "，<br>");
+      $("heroDescription").textContent = cfg.heroDescription || "";
+      $("cultureTitle").textContent = cfg.cultureTitle || "";
+      $("cultureDescription").textContent = cfg.cultureDescription || "";
+      $("aboutSlogan").innerHTML = (cfg.slogan || "").replace("，", "，<br><em>").replace(/。$/, "。</em>");
+      $("aboutDescription").textContent = cfg.aboutDescription || "";
+      $("footerNote").textContent = cfg.footerNote || "";
+      $("desktopNav").innerHTML = (cfg.navItems || []).map(item =>
+        `<a href="${item.href}">${item.label}</a>`
+      ).join("");
+
+      const grid = $("courseGrid");
+      (cfg.courses || []).forEach(course => {
+        const pending = course.status !== "ready";
+        const card = document.createElement("article");
+        card.className = "course-card" + (pending ? " is-pending" : "");
+        card.innerHTML = `
+          <a class="course-link" href="course.html?id=${encodeURIComponent(course.id)}" aria-label="查看${course.title}">
+            <div class="course-visual visual-${course.id}" aria-hidden="true">
+              <span class="course-number">${course.id}</span>
+              <span class="visual-label">${pending ? "COMING SOON" : "THINKING SERIES"}</span>
+              <span class="visual-shape"></span>
+            </div>
+            <div class="course-info">
+              <div class="course-title-row"><h3>${course.title}</h3><span class="course-arrow">↗</span></div>
+              <p>${course.subtitle || ""}</p>
+              <div class="course-status"><span class="status-dot ${pending ? "muted" : ""}"></span>${pending ? "待更新" : (course.embedHtml ? "课程已上线" : "视频待接入")}</div>
+            </div>
+          </a>`;
+        grid.appendChild(card);
+      });
+    })();
+  </script>
+</body>
+</html>
